@@ -60,23 +60,11 @@ class _SignInPageState extends State<SignInPage> {
         "id": firebaseUser!.uid,
         "blockStatus": "no",
       };
-      FirebaseDatabase.instance
-          .ref()
-          .child("users")
-          .child(firebaseUser.uid)
-          .set(userDataMap);
 
       FirebaseFirestore.instance
           .collection("users")
           .doc(firebaseUser.uid)
           .set(userDataMap);
-
-      FirebaseDatabase.instance
-          .ref()
-          .child("users")
-          .child(firebaseUser.uid)
-          .child("rideHistory")
-          .set("empty");
 
       Navigator.pop(context);
       associateMethods.showSnackBarMsg("Account created successfully", context);
